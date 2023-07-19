@@ -5,3 +5,23 @@
   margin: 10px;
   display: inline-block;
 }
+
+.flipped.red {
+  background-color: red;
+}
+
+.flipped.orange {
+  background-color: orange;
+}
+
+.flipped.green {
+  background-color: green;
+}
+
+.flipped.blue {
+  background-color: blue;
+}
+
+.flipped.purple {
+  background-color: purple;
+}

@@ -1,5 +1,4 @@
 const gameContainer = document.getElementById("game");
-
 const COLORS = [
   "red",
   "blue",
@@ -12,6 +11,9 @@ const COLORS = [
   "orange",
   "purple"
 ];
+let faceUpCard = {color: '', cardId: ''};
+let canClick = true;
+let matchedPairs = 0;
 
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -42,6 +44,7 @@ let shuffledColors = shuffle(COLORS);
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 function createDivsForColors(colorArray) {
+  let cardId = 0;
   for (let color of colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
@@ -52,15 +55,56 @@ function createDivsForColors(colorArray) {
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
 
+    newDiv.setAttribute("id", cardId);
+    cardId ++;
     // append the div to the element with an id of game
     gameContainer.append(newDiv);
   }
 }
 
-// TODO: Implement this function!
 function handleCardClick(event) {
-  // you can use event.target to see which element was clicked
-  console.log("you just clicked", event.target);
+  // Check to see if cards can be clicked and card is not already flipped
+  if (canClick && !event.target.classList.contains("flipped")) {
+    // Flip card
+    event.target.classList.add("flipped");
+    let targetCardColor = event.target.classList[0];
+    let targetCardId = event.target.id;
+
+    // If no saved card, save card to var
+    if (faceUpCard.color == '') {
+      faceUpCard.color = targetCardColor;
+      faceUpCard.cardId = targetCardId;
+
+    // Else, compare to var and make sure 
+    } else {
+      canClick = false;
+
+      // If colors match check win condition
+      if (targetCardColor == faceUpCard.color && targetCardId != faceUpCard.cardId) {
+        canClick = true;
+        faceUpCard.color = '';
+        faceUpCard.cardId = '';
+        matchedPairs ++;
+        if (matchedPairs == 5) {
+          // You win!
+          document.getElementsByTagName("h1")[0].innerText = "You win!";
+        }
+      // Else, flip cards after 1 second
+      } else {
+        setTimeout(() => {
+          let card1 = document.getElementById(faceUpCard.cardId);
+          let card2 = document.getElementById(targetCardId);
+
+          console.log(`Card Id 1:${faceUpCard.cardId}, Card Id 2:${targetCardId}`)
+          card1.classList.remove("flipped");
+          card2.classList.remove("flipped");
+          faceUpCard.color = '';
+          faceUpCard.cardId = '';
+          canClick = true;
+        }, 1000);
+      }
+    }
+  }
 }
 
 // when the DOM loads
