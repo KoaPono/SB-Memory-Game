@@ -1,27 +1,38 @@
+body {
+  background-color: #FCF5C7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
 #game div {
-  border: 1px solid black;
+  border: 3px solid black;
   width: 15%;
   height: 200px;
   margin: 10px;
   display: inline-block;
+  border-radius: 10px;
 }
 
 .flipped.red {
-  background-color: red;
+  background-color: #DB3069;
 }
 
 .flipped.orange {
-  background-color: orange;
+  background-color: #FFC857;
 }
 
 .flipped.green {
-  background-color: green;
+  background-color: #BDD9BF;
 }
 
 .flipped.blue {
-  background-color: blue;
+  background-color: #6B9AC4;
 }
 
 .flipped.purple {
-  background-color: purple;
+  background-color: #2E4052;
 }
