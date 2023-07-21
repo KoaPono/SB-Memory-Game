@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik|Poppins:300&display=swap");
+
 body {
   background-color: #FCF5C7;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", "Rubik", sans-serif;
 }
 
 h1 {
